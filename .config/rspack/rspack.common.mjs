@@ -2,7 +2,7 @@ import rspack from '@rspack/core';
 import path from 'path';
 
 export default {
-  entry: path.resolve(process.cwd(), 'src/index.js'),
+  entry: path.resolve(process.cwd(), 'src/index.jsx'),
   module: {
     rules: [
       {

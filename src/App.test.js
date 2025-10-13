@@ -4,5 +4,5 @@ import App from './App'
 test('should render', async () => {
   render(<App />)
 
-  expect(screen.getByText('countdown')).toBeInTheDocument()
+  expect(screen.getByText('Countdown date (date and time):')).toBeInTheDocument()
 })
