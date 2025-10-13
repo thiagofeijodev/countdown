@@ -1,0 +1,19 @@
+{
+  "short_name": "countdown",
+  "name": "countdown",
+  "description": "Simple and clean countdown",
+  "start_url": "/index.html",
+  "scope": "/",
+  "dir": "ltr",
+  "display_override": ["window-control-overlay", "minimal-ui"],
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff",
+  "categories": ["business", "productivity", "utilities"],
+  "shortcuts" : [
+    {
+      "name": "Home",
+      "url": "/"
+    }
+  ]
+}
