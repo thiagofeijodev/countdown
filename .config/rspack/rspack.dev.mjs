@@ -13,7 +13,6 @@ export default () => {
       filename: "static/main.js",
     },
     plugins: [
-      ...common.plugins,
       new HtmlWebpackPlugin({
         template: path.join(process.cwd(), 'public/index.html'),
         filename: path.join(process.cwd(), 'static/index.html'),

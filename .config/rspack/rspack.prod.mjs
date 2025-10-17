@@ -1,4 +1,3 @@
-/* eslint-disable import/no-extraneous-dependencies */
 import path from 'path';
 import { WebpackAssetsManifest } from 'webpack-assets-manifest';
 import WorkboxPlugin from 'workbox-webpack-plugin';
@@ -14,14 +13,13 @@ export default () => {
     devtool: false,
     output: {
       ...common.output,
-      path: path.resolve(process.cwd(), 'docs'),
+      path: path.resolve(process.cwd(), 'dist'),
     },
     plugins: [
-      ...common.plugins,
       new HtmlWebpackPlugin({
         favicon: 'public/logo.png',
         template: path.join(process.cwd(), 'public/index.html'),
-        filename: path.join(process.cwd(), 'docs/index.html'),
+        filename: path.join(process.cwd(), 'dist/index.html'),
         inject: 'body',
       }),
       new FaviconsRspackPlugin({
