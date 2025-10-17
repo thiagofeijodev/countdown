@@ -11,7 +11,7 @@
     "start": "rspack serve --mode development --config .config/rspack/rspack.dev.mjs",
     "build": "NODE_ENV=production && rspack --mode production --config .config/rspack/rspack.prod.mjs",
     "analyzer": "rspack build --analyze --mode development --config .config/rspack/rspack.prod.mjs",
-    "lint": "echo 1#eslint 'src/**/*.{js,jsx}' --max-warnings 0",
+    "lint": "eslint 'src/**/*.{js,jsx}' --max-warnings 0",
     "test": "jest --maxConcurrency=2 --maxWorkers=2",
     "prepare": "husky"
   },
