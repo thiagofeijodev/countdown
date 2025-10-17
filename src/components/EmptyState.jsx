@@ -16,7 +16,7 @@ export const EmptyState = ({ error }) => {
         <h2 className={styles.errorTitle}>Error</h2>
         <p className={styles.errorMessage}>{error}</p>
         <form className={styles.formCountdowndate} onSubmit={onSubmit}>
-          <label for="countdowndate">Countdown date (date and time):</label>
+          <label htmlFor="countdowndate">Countdown date (date and time):</label>
           <input type="datetime-local" id="countdowndate" name="countdowndate" />
           <input type="submit" />
         </form>
