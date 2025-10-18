@@ -11,6 +11,17 @@ export const useDeadlineDate = () => {
   // Parse the target date
   const targetDateTime = new Date(targetDate);
 
+  const error = useMemo(() => {
+    if (!targetDate) {
+      return 'No date parameter found in URL. Add ?date=YYYY-MM-DD to the URL.';
+    }
+
+    // Validate the date
+    if (isNaN(targetDateTime.getTime())) {
+      return 'Invalid date format. Please use YYYY-MM-DD format.';
+    }
+  }, [targetDateTime, targetDate]);
+
   const onCleanDate = useCallback(() => {
     setTargetDate('');
     window.history.replaceState({}, '', '?date=');
@@ -22,17 +33,6 @@ export const useDeadlineDate = () => {
     const formattedDate = new Date(newDate).toISOString();
     window.history.replaceState({}, '', `?date=${formattedDate}`);
   }, []);
-
-  const error = useMemo(() => {
-    if (!targetDate) {
-      return 'No date parameter found in URL. Add ?date=YYYY-MM-DD to the URL.';
-    }
-
-    // Validate the date
-    if (isNaN(targetDateTime.getTime())) {
-      return 'Invalid date format. Please use YYYY-MM-DD format.';
-    }
-  }, [targetDateTime, targetDate]);
 
   return {
     error,
