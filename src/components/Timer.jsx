@@ -27,14 +27,14 @@ export const Timer = ({ targetDateTime }) => {
         {!!countdown.hours && (
           <>
             <div className="timeUnit">
-              <span className="timeValue">{countdown.hours}</span>
+              <span className="timeValue">{countdown.hours.toString().padStart(2, '0')}</span>
               <span className="timeLabel">hours</span>
             </div>
             <div className="separator">:</div>
           </>
         )}
         <div className="timeUnit">
-          <span className="timeValue">{countdown.minutes}</span>
+          <span className="timeValue">{countdown.minutes.toString().padStart(2, '0')}</span>
           <span className="timeLabel">minutes</span>
         </div>
         <div className="separator">:</div>
