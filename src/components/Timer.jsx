@@ -1,5 +1,6 @@
 import { useCountdown } from '../hooks/useCountdown';
-import * as styles from '../styles.css';
+import * as styles from './Timer.module.css';
+import * as appStyles from '../App.module.css';
 
 export const Timer = ({ targetDateTime }) => {
   const countdown = useCountdown(targetDateTime);
@@ -14,7 +15,7 @@ export const Timer = ({ targetDateTime }) => {
   }
 
   return (
-    <div className={styles.countdownBox}>
+    <div className={appStyles.countdownBox}>
       <div className={styles.timeDisplay}>
         {!!countdown.days && (
           <>

@@ -16,7 +16,6 @@ export default () => {
       path: path.resolve(process.cwd(), 'dist'),
     },
     plugins: [
-      ...common.plugins,
       new HtmlWebpackPlugin({
         favicon: 'public/logo.png',
         template: path.join(process.cwd(), 'public/index.html'),

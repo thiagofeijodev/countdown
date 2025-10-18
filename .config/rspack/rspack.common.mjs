@@ -1,4 +1,3 @@
-import rspack from '@rspack/core';
 import path from 'path';
 
 export default {
@@ -47,21 +46,6 @@ export default {
         },
       },
       {
-        test: /\.css$/,
-        use: [
-          rspack.CssExtractRspackPlugin.loader,
-          'style-loader',
-          'css-loader',
-          {
-            loader: 'builtin:lightningcss-loader',
-            /** @type {import('@rspack/core').LightningcssLoaderOptions} */
-            options: {
-              targets: 'ie 10',
-            },
-          },
-        ],
-      },
-      {
         test: /\.(png|jp(e*)g|gif)$/,
         use: [
           {
@@ -74,5 +58,7 @@ export default {
       },
     ],
   },
-  plugins: [new rspack.CssExtractRspackPlugin()],
+  experiments: {
+    css: true,
+  },
 };

@@ -15,7 +15,6 @@ const rspackConfig = {
     filename: 'static/main.js',
   },
   plugins: [
-    ...common.plugins,
     new ReactRefreshPlugin(),
     new HtmlWebpackPlugin({
       template: path.join(process.cwd(), 'public/index.html'),
@@ -40,18 +39,10 @@ async function run() {
 
   const server = new RspackDevServer(serverOptions, compiler);
 
-  if (typeof server.startCallback === 'function') {
-    server.startCallback(() => {
-      const port = serverOptions.port || 3001;
-      console.log(`Successfully started server on http://localhost:${port}`);
-    });
-  } else if (typeof server.start === 'function') {
-    await server.start();
+  server.startCallback(() => {
     const port = serverOptions.port || 3001;
-    console.log(`Successfully started server on http://localhost:${port}`);
-  } else {
-    console.log('Started rspack dev server (no startCallback/start API available on this version)');
-  }
+    console.log(`startCallbackSuccessfully started server on http://localhost:${port}`);
+  });
 }
 
 run();
