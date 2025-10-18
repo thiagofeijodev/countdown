@@ -1,5 +1,3 @@
-import * as styles from '../styles.css';
-
 export const EmptyState = ({ error }) => {
   const onSubmit = (e) => {
     e.preventDefault();
@@ -11,11 +9,11 @@ export const EmptyState = ({ error }) => {
   };
 
   return (
-    <div className={styles.container}>
-      <div className={styles.errorBox}>
-        <h2 className={styles.errorTitle}>Error</h2>
-        <p className={styles.errorMessage}>{error}</p>
-        <form className={styles.formCountdowndate} onSubmit={onSubmit}>
+    <div className="container">
+      <div className="errorBox">
+        <h2 className="errorTitle">Error</h2>
+        <p className="errorMessage">{error}</p>
+        <form className="formCountdowndate" onSubmit={onSubmit}>
           <label htmlFor="countdowndate">Countdown date (date and time):</label>
           <input type="datetime-local" id="countdowndate" name="countdowndate" />
           <input type="submit" />

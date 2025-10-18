@@ -1,5 +1,4 @@
 import { useState, useEffect, useMemo } from 'react';
-import * as styles from '../styles.css';
 
 const SECOND = 1000;
 const MINUTE = 60 * SECOND;
@@ -40,42 +39,42 @@ export const Timer = ({ targetDateTime }) => {
 
   if (!countdown) {
     return (
-      <div className={styles.expiredBox}>
-        <h2 className={styles.expiredTitle}>Time&apos;s Up! ⏰</h2>
-        <p className={styles.expiredMessage}>The countdown has reached zero.</p>
+      <div className="expiredBox">
+        <h2 className="expiredTitle">Time&apos;s Up! ⏰</h2>
+        <p className="expiredMessage">The countdown has reached zero.</p>
       </div>
     );
   }
 
   return (
-    <div className={styles.countdownBox}>
-      <div className={styles.timeDisplay}>
+    <div className="countdownBox">
+      <div className="timeDisplay">
         {!!countdown.days && (
           <>
-            <div className={styles.timeUnit}>
-              <span className={styles.timeValue}>{countdown.days}</span>
-              <span className={styles.timeLabel}>days</span>
+            <div className="timeUnit">
+              <span className="timeValue">{countdown.days}</span>
+              <span className="timeLabel">days</span>
             </div>
-            <div className={styles.separator}>:</div>
+            <div className="separator">:</div>
           </>
         )}
         {!!countdown.hours && (
           <>
-            <div className={styles.timeUnit}>
-              <span className={styles.timeValue}>{countdown.hours}</span>
-              <span className={styles.timeLabel}>hours</span>
+            <div className="timeUnit">
+              <span className="timeValue">{countdown.hours}</span>
+              <span className="timeLabel">hours</span>
             </div>
-            <div className={styles.separator}>:</div>
+            <div className="separator">:</div>
           </>
         )}
-        <div className={styles.timeUnit}>
-          <span className={styles.timeValue}>{countdown.minutes}</span>
-          <span className={styles.timeLabel}>minutes</span>
+        <div className="timeUnit">
+          <span className="timeValue">{countdown.minutes}</span>
+          <span className="timeLabel">minutes</span>
         </div>
-        <div className={styles.separator}>:</div>
-        <div className={styles.timeUnit}>
-          <span className={styles.timeValue}>{countdown.seconds.toString().padStart(2, '0')}</span>
-          <span className={styles.timeLabel}>seconds</span>
+        <div className="separator">:</div>
+        <div className="timeUnit">
+          <span className="timeValue">{countdown.seconds.toString().padStart(2, '0')}</span>
+          <span className="timeLabel">seconds</span>
         </div>
       </div>
     </div>
