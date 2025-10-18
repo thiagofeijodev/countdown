@@ -1,10 +1,8 @@
-name: Deploy
+name: Production Deploy
 
 on:
   push:
     branches: ['main']
-
-  workflow_dispatch:
 
 permissions:
   contents: write
@@ -31,8 +29,14 @@ jobs:
           node-version: 24
           cache: 'npm'
 
-      - name: Install Dependencies ⚙️
+      - name: Install dependencies (including optional)
         run: npm ci --include=optional
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Test
+        run: npm test
 
       - name: Build 🔧
         run: npm run build
