@@ -1,8 +1,8 @@
 import * as styles from './App.module.css';
-import { EmptyState } from './components/EmptyState';
 import { useDeadlineDate } from './hooks/useDeadlineDate';
-import { Timer } from './components/Timer';
-import { OriginalDateTimeDisplay } from './components/OriginalDateTimeDisplay';
+import { EmptyState } from './components/EmptyState/EmptyState';
+import { Timer } from './components/Timer/Timer';
+import { OriginalDateTimeDisplay } from './components/OriginalDateTimeDisplay/OriginalDateTimeDisplay';
 
 const App = () => {
   const { error, targetDateTime, updateDate, onCleanDate } = useDeadlineDate();
