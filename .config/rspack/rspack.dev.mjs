@@ -41,7 +41,7 @@ async function run() {
 
   server.startCallback(() => {
     const port = serverOptions.port || 3001;
-    console.log(`startCallbackSuccessfully started server on http://localhost:${port}`);
+    console.log(`Successfully started server on http://localhost:${port}`);
   });
 }
 
