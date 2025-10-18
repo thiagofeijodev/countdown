@@ -9,7 +9,7 @@
   "type": "module",
   "scripts": {
     "start": "node .config/rspack/rspack.dev.mjs",
-    "build": "NODE_ENV=production && rspack --mode production --config .config/rspack/rspack.prod.mjs",
+    "build": "rspack --config .config/rspack/rspack.prod.mjs",
     "analyzer": "rspack build --analyze --mode development --config .config/rspack/rspack.prod.mjs",
     "lint": "eslint 'src/**/*.{js,jsx}' --max-warnings 0",
     "format": "prettier --write .",
