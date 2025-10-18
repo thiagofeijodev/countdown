@@ -1,5 +1,5 @@
 import { renderHook, act } from '@testing-library/react';
-import { MINUTE, SECOND, useCountdown } from '../useCountdown';
+import { MINUTE, SECOND, useCountdown } from './useCountdown';
 
 describe('useCountdown', () => {
   const base = new Date('2025-01-01T00:00:00.000Z');

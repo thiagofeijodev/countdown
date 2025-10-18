@@ -1,5 +1,5 @@
 import { renderHook, act } from '@testing-library/react';
-import { useDeadlineDate } from '../useDeadlineDate';
+import { useDeadlineDate } from './useDeadlineDate';
 
 // Mock window.history
 const mockHistory = {
