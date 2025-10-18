@@ -15,6 +15,7 @@ const rspackConfig = {
     filename: 'static/main.js',
   },
   plugins: [
+    ...common.plugins,
     new ReactRefreshPlugin(),
     new HtmlWebpackPlugin({
       template: path.join(process.cwd(), 'public/index.html'),
