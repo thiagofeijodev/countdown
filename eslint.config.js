@@ -1,17 +1,24 @@
-import globals from "globals";
-import react from "eslint-plugin-react";
-import reactHooks from "eslint-plugin-react-hooks";
-import reactRefresh from "eslint-plugin-react-refresh";
-import eslint from "@eslint/js";
+import globals from 'globals';
+import react from 'eslint-plugin-react';
+import reactHooks from 'eslint-plugin-react-hooks';
+import reactRefresh from 'eslint-plugin-react-refresh';
+import prettier from 'eslint-config-prettier';
+import eslint from '@eslint/js';
 
 const config = [
   // Base configuration for all files
   eslint.configs.recommended,
   react.configs.flat.recommended,
+  prettier,
 
   // Configuration files (including this one)
   {
-    files: ['eslint.config.js', '.config/**/*.{js,ts,mjs}', 'commitlint.config.js', 'jest.config.mjs'],
+    files: [
+      'eslint.config.js',
+      '.config/**/*.{js,ts,mjs}',
+      'commitlint.config.js',
+      'jest.config.mjs',
+    ],
     languageOptions: {
       globals: {
         require: 'readonly',
@@ -37,8 +44,8 @@ const config = [
   {
     files: ['src/**/*.{js,jsx}'],
     languageOptions: {
-      ecmaVersion: "latest",
-      sourceType: "module",
+      ecmaVersion: 'latest',
+      sourceType: 'module',
       globals: {
         ...globals.browser,
         ...globals.jest,
@@ -55,16 +62,13 @@ const config = [
       'react-refresh': reactRefresh,
     },
     settings: {
-      react: { version: "detect" },
+      react: { version: 'detect' },
     },
     rules: {
-      'no-const-assign': "error",
+      'no-const-assign': 'error',
       'react/react-in-jsx-scope': 'off', // Not needed with React 17+
       'react/prop-types': 'off', // Using TypeScript for prop validation
-      'react-refresh/only-export-components': [
-        'warn',
-        { allowConstantExport: true },
-      ],
+      'react-refresh/only-export-components': ['warn', { allowConstantExport: true }],
       'react/jsx-uses-react': 'off',
       'react/jsx-uses-vars': 'error',
     },
