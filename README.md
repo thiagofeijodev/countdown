@@ -2,7 +2,6 @@
 
 A lightweight, privacy-minded countdown app made for clarity and speed. Enter a target date and get a clear countdown in days, hours, minutes, and seconds. The interface is intentionally minimal: no ads, no analytics, and no unnecessary features — just the information you need. Ideal for event timers, personal goals, deadlines, and quick embeds on static pages.
 
-
 ## 🔧 Development Setup
 
 To run this project locally, follow these steps:

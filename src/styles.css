@@ -11,7 +11,10 @@ body {
   align-items: center;
   justify-content: center;
   color: #ffffff;
-  font-family: system-ui, -apple-system, sans-serif;
+  font-family:
+    system-ui,
+    -apple-system,
+    sans-serif;
   padding: 20px;
 }
 
@@ -123,7 +126,7 @@ body {
   gap: 10px;
 }
 
-.formCountdowndate > input[type="submit"]{
+.formCountdowndate > input[type='submit'] {
   cursor: pointer;
   background-color: #764ba2;
   border-radius: 4px;
@@ -132,7 +135,7 @@ body {
   height: 30px;
 }
 
-.button{
+.button {
   text-align: center;
 }
 

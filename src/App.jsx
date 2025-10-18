@@ -1,4 +1,4 @@
-import * as styles from './styles.css'
+import * as styles from './styles.css';
 import { EmptyState } from './components/EmptyState';
 import { useDeadlineDate } from './hooks/useDeadlineDate';
 import { Timer } from './components/Timer';
@@ -7,9 +7,7 @@ const App = () => {
   const { error, targetDateTime, onCleanDate } = useDeadlineDate();
 
   if (error) {
-    return (
-      <EmptyState error={error} />
-    )
+    return <EmptyState error={error} />;
   }
 
   return (
@@ -19,12 +17,10 @@ const App = () => {
       <Timer targetDateTime={targetDateTime} />
 
       <div className={styles.button}>
-        <button onClick={onCleanDate}>
-          Reset
-        </button>
+        <button onClick={onCleanDate}>Reset</button>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default App
+export default App;

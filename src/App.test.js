@@ -1,8 +1,8 @@
-import {render, screen} from '@testing-library/react'
-import App from './App'
+import { render, screen } from '@testing-library/react';
+import App from './App';
 
 test('should render', async () => {
-  render(<App />)
+  render(<App />);
 
-  expect(screen.getByText('Countdown date (date and time):')).toBeInTheDocument()
-})
+  expect(screen.getByText('Countdown date (date and time):')).toBeInTheDocument();
+});

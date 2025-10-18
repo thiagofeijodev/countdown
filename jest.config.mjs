@@ -1,12 +1,15 @@
 import path from 'path';
 import fs from 'fs';
 
-const swcrc = JSON.parse(fs.readFileSync(path.join(process.cwd(), '.swcrc'), { encoding: 'utf-8' }));
+const swcrc = JSON.parse(
+  fs.readFileSync(path.join(process.cwd(), '.swcrc'), { encoding: 'utf-8' }),
+);
 
 /** @type {import('jest').Config} */
-const config = {testEnvironment: 'jsdom', // Use jsdom for browser-like testing
+const config = {
+  testEnvironment: 'jsdom', // Use jsdom for browser-like testing
   transform: {
-    '^.+\\.(t|j)sx?$': ['@swc/jest', { ...swcrc}],
+    '^.+\\.(t|j)sx?$': ['@swc/jest', { ...swcrc }],
   },
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx'],
   moduleNameMapper: {
@@ -19,10 +22,7 @@ const config = {testEnvironment: 'jsdom', // Use jsdom for browser-like testing
     '<rootDir>/src/**/*.{spec,test}.{ts,tsx,js,jsx}',
   ],
   // Optional: Extend jest-dom matchers
-  setupFilesAfterEnv: [
-    '<rootDir>/.config/tests/setupTests.js',
-    '@testing-library/jest-dom',
-  ],
+  setupFilesAfterEnv: ['<rootDir>/.config/tests/setupTests.js', '@testing-library/jest-dom'],
 };
 
 export default config;

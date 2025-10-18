@@ -30,10 +30,10 @@ export default () => {
         manifest: './public/manifest.json',
       }),
       new CompressionPlugin({
-        filename: "[path][base].gz",
+        filename: '[path][base].gz',
       }),
       new WebpackAssetsManifest({}),
-      new WorkboxPlugin.GenerateSW()
+      new WorkboxPlugin.GenerateSW(),
     ],
     optimization: {
       splitChunks: {
@@ -43,4 +43,4 @@ export default () => {
   };
 
   return config;
-}
+};

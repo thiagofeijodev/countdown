@@ -1,4 +1,4 @@
-import * as styles from '../styles.css'
+import * as styles from '../styles.css';
 
 export const EmptyState = ({ error }) => {
   const onSubmit = (e) => {
@@ -8,7 +8,7 @@ export const EmptyState = ({ error }) => {
       const formattedDate = new Date(dateTimeValue).toISOString();
       window.location.search = `?date=${formattedDate}`;
     }
-  }
+  };
 
   return (
     <div className={styles.container}>
@@ -22,5 +22,5 @@ export const EmptyState = ({ error }) => {
         </form>
       </div>
     </div>
-  )
-}
+  );
+};

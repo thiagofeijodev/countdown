@@ -5,7 +5,7 @@ export default {
   output: {
     filename: 'static/[name].[contenthash].js',
     publicPath: '/',
-    clean: true
+    clean: true,
   },
   resolve: {
     extensions: ['.js', '.jsx'],
@@ -22,12 +22,7 @@ export default {
             env: {
               mode: 'usage',
               coreJs: '3.26.1',
-              targets: [
-                'chrome >= 87',
-                'edge >= 88',
-                'firefox >= 78',
-                'safari >= 14',
-              ],
+              targets: ['chrome >= 87', 'edge >= 88', 'firefox >= 78', 'safari >= 14'],
             },
             isModule: 'unknown',
             jsc: {
@@ -37,12 +32,12 @@ export default {
               },
               transform: {
                 react: {
-                runtime: "automatic",
+                  runtime: 'automatic',
                   pragma: 'React.createElement',
                   pragmaFrag: 'React.Fragment',
                   throwIfNamespace: false,
                   development: false,
-                  importSource: "react",
+                  importSource: 'react',
                   useBuiltins: false,
                 },
               },
@@ -76,4 +71,4 @@ export default {
       },
     ],
   },
-}
+};

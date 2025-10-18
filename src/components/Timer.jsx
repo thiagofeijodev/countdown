@@ -1,5 +1,5 @@
-import { useState, useEffect, useMemo } from 'react'
-import * as styles from '../styles.css'
+import { useState, useEffect, useMemo } from 'react';
+import * as styles from '../styles.css';
 
 const SECOND = 1000;
 const MINUTE = 60 * SECOND;
@@ -10,23 +10,23 @@ export const Timer = ({ targetDateTime }) => {
   const [now, setNow] = useState(new Date());
 
   const countdown = useMemo(() => {
-    const timeDiff = targetDateTime?.getTime() - now.getTime()
+    const timeDiff = targetDateTime?.getTime() - now.getTime();
     if (timeDiff <= 0) {
       return null;
     }
 
-    const totalSeconds = Math.floor(timeDiff / SECOND)
-    const days = Math.trunc(timeDiff / DAY)
-    const hours = Math.trunc((timeDiff - (days * DAY)) / HOUR) % 60
-    const minutes = Math.trunc(timeDiff / MINUTE) % 60
-    const seconds = totalSeconds % 60
+    const totalSeconds = Math.floor(timeDiff / SECOND);
+    const days = Math.trunc(timeDiff / DAY);
+    const hours = Math.trunc((timeDiff - days * DAY) / HOUR) % 60;
+    const minutes = Math.trunc(timeDiff / MINUTE) % 60;
+    const seconds = totalSeconds % 60;
 
     return {
       days,
       hours,
       minutes,
       seconds,
-    }
+    };
   }, [targetDateTime, now]);
 
   useEffect(() => {
@@ -44,7 +44,7 @@ export const Timer = ({ targetDateTime }) => {
         <h2 className={styles.expiredTitle}>Time&apos;s Up! ⏰</h2>
         <p className={styles.expiredMessage}>The countdown has reached zero.</p>
       </div>
-    )
+    );
   }
 
   return (
@@ -79,5 +79,5 @@ export const Timer = ({ targetDateTime }) => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
