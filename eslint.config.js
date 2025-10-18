@@ -40,7 +40,7 @@ const config = [
     },
   },
 
-  // React files configuration (renderer process)
+  // React files configuration
   {
     files: ['src/**/*.{js,jsx}'],
     languageOptions: {

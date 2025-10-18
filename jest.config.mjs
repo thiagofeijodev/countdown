@@ -7,7 +7,7 @@ const swcrc = JSON.parse(
 
 /** @type {import('jest').Config} */
 const config = {
-  testEnvironment: 'jsdom', // Use jsdom for browser-like testing
+  testEnvironment: 'jsdom',
   transform: {
     '^.+\\.(t|j)sx?$': ['@swc/jest', { ...swcrc }],
   },
@@ -21,7 +21,6 @@ const config = {
     '<rootDir>/src/**/__tests__/**/*.{ts,tsx,js,jsx}',
     '<rootDir>/src/**/*.{spec,test}.{ts,tsx,js,jsx}',
   ],
-  // Optional: Extend jest-dom matchers
   setupFilesAfterEnv: ['<rootDir>/.config/tests/setupTests.js', '@testing-library/jest-dom'],
 };
 
