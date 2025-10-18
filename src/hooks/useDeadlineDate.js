@@ -1,16 +1,27 @@
-import { useMemo } from 'react';
+import { useMemo, useState, useCallback } from 'react';
 
 export const useDeadlineDate = () => {
   // Get the date parameter from the URL
   const urlParams = new URLSearchParams(window.location.search);
-  const targetDate = urlParams.get('date');
+  const initialDate = urlParams.get('date');
+
+  // Internal state for the date (can be updated without URL change)
+  const [targetDate, setTargetDate] = useState(initialDate);
 
   // Parse the target date
   const targetDateTime = new Date(targetDate);
 
-  const onCleanDate = () => {
-    window.location.search = '';
-  };
+  const onCleanDate = useCallback(() => {
+    setTargetDate('');
+    window.history.replaceState({}, '', '?date=');
+  }, []);
+
+  const updateDate = useCallback((newDate) => {
+    setTargetDate(newDate);
+
+    const formattedDate = new Date(newDate).toISOString();
+    window.history.replaceState({}, '', `?date=${formattedDate}`);
+  }, []);
 
   const error = useMemo(() => {
     if (!targetDate) {
@@ -26,6 +37,7 @@ export const useDeadlineDate = () => {
   return {
     error,
     onCleanDate,
+    updateDate,
     targetDateTime,
   };
 };

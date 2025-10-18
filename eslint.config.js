@@ -65,7 +65,6 @@ const config = [
       react: { version: 'detect' },
     },
     rules: {
-      'no-const-assign': 'error',
       'react/react-in-jsx-scope': 'off', // Not needed with React 17+
       'react/prop-types': 'off', // not using prop-types
       'react-refresh/only-export-components': ['warn', { allowConstantExport: true }],

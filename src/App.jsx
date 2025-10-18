@@ -5,10 +5,10 @@ import { OriginalDateTimeDisplay } from './components/OriginalDateTimeDisplay';
 import './styles.css';
 
 const App = () => {
-  const { error, targetDateTime, onCleanDate } = useDeadlineDate();
+  const { error, targetDateTime, updateDate, onCleanDate } = useDeadlineDate();
 
   if (error) {
-    return <EmptyState />;
+    return <EmptyState updateDate={updateDate} />;
   }
 
   return (

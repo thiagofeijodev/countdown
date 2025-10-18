@@ -1,10 +1,9 @@
-export const EmptyState = () => {
+export const EmptyState = ({ updateDate }) => {
   const onSubmit = (e) => {
     e.preventDefault();
     const dateTimeValue = e.target.countdowndate.value;
     if (dateTimeValue) {
-      const formattedDate = new Date(dateTimeValue).toISOString();
-      window.location.search = `?date=${formattedDate}`;
+      updateDate(dateTimeValue);
     }
   };
 
