@@ -14,11 +14,8 @@ const App = () => {
   return (
     <div className="container">
       <h1 className="title">Countdown Timer</h1>
-
       <Timer targetDateTime={targetDateTime} />
-
       <OriginalDateTimeDisplay targetDateTime={targetDateTime} />
-
       <div className="button">
         <button onClick={onCleanDate}>Reset</button>
       </div>
