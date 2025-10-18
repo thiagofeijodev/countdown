@@ -1,11 +1,12 @@
 import * as styles from './EmptyState.module.css';
-import * as appStyles from '../App.module.css';
+import * as appStyles from '../../App.module.css';
 
 export const EmptyState = ({ updateDate }) => {
   const onSubmit = (e) => {
     e.preventDefault();
-    const dateTimeValue = e.target.countdowndate.value;
-    if (dateTimeValue) {
+    const formData = new FormData(e.target);
+    const dateTimeValue = formData.get('countdowndate');
+    if (dateTimeValue && updateDate) {
       updateDate(dateTimeValue);
     }
   };
@@ -19,7 +20,7 @@ export const EmptyState = ({ updateDate }) => {
       </p>
 
       <form className={styles.formCountdowndate} onSubmit={onSubmit}>
-        <label htmlFor={styles.countdowndate}>Countdown date (date and time):</label>
+        <label htmlFor="countdowndate">Countdown date (date and time):</label>
 
         <input type="datetime-local" id="countdowndate" name="countdowndate" />
         <input type="submit" value="Start countdown" />

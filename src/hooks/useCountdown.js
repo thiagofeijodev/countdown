@@ -9,7 +9,11 @@ export const useCountdown = (targetDateTime) => {
   const [now, setNow] = useState(new Date());
 
   const countdown = useMemo(() => {
-    const timeDiff = targetDateTime?.getTime() - now.getTime();
+    if (!targetDateTime) {
+      return null;
+    }
+
+    const timeDiff = targetDateTime.getTime() - now.getTime();
     if (timeDiff <= 0) {
       return null;
     }

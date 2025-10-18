@@ -30,8 +30,17 @@ export const useDeadlineDate = () => {
   const updateDate = useCallback((newDate) => {
     setTargetDate(newDate);
 
-    const formattedDate = new Date(newDate).toISOString();
-    window.history.replaceState({}, '', `?date=${formattedDate}`);
+    if (newDate) {
+      const dateObj = new Date(newDate);
+      if (!isNaN(dateObj.getTime())) {
+        const formattedDate = dateObj.toISOString();
+        window.history.replaceState({}, '', `?date=${formattedDate}`);
+      } else {
+        window.history.replaceState({}, '', '?date=');
+      }
+    } else {
+      window.history.replaceState({}, '', '?date=');
+    }
   }, []);
 
   return {

@@ -1,6 +1,6 @@
-import { useCountdown } from '../hooks/useCountdown';
 import * as styles from './Timer.module.css';
-import * as appStyles from '../App.module.css';
+import { useCountdown } from '../../hooks/useCountdown';
+import * as appStyles from '../../App.module.css';
 
 export const Timer = ({ targetDateTime }) => {
   const countdown = useCountdown(targetDateTime);
