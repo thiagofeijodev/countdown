@@ -1,4 +1,4 @@
-export const EmptyState = ({ error }) => {
+export const EmptyState = () => {
   const onSubmit = (e) => {
     e.preventDefault();
     const dateTimeValue = e.target.countdowndate.value;
@@ -10,14 +10,22 @@ export const EmptyState = ({ error }) => {
 
   return (
     <div className="container">
-      <div className="errorBox">
-        <h2 className="errorTitle">Error</h2>
-        <p className="errorMessage">{error}</p>
+      <div className="countdownBox">
+        <h1 className="title">Welcome to Countdown</h1>
+        <p className="info">
+          A minimal, ad-free countdown. Pick a date and time below to start counting down —
+          we&apos;ll handle the rest.
+        </p>
+
         <form className="formCountdowndate" onSubmit={onSubmit}>
-          <label htmlFor="countdowndate">Countdown date (date and time):</label>
+          <label htmlFor="countdowndate">Select target date and time</label>
           <input type="datetime-local" id="countdowndate" name="countdowndate" />
-          <input type="submit" />
+          <input type="submit" value="Start countdown" />
         </form>
+
+        <p className="example">
+          Example: 2025-12-31 23:59 — perfect for New Year&apos;s or project deadlines.
+        </p>
       </div>
     </div>
   );

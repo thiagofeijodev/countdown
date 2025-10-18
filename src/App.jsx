@@ -1,13 +1,14 @@
 import { EmptyState } from './components/EmptyState';
 import { useDeadlineDate } from './hooks/useDeadlineDate';
 import { Timer } from './components/Timer';
+import { OriginalDateTimeDisplay } from './components/OriginalDateTimeDisplay';
 import './styles.css';
 
 const App = () => {
   const { error, targetDateTime, onCleanDate } = useDeadlineDate();
 
   if (error) {
-    return <EmptyState error={error} />;
+    return <EmptyState />;
   }
 
   return (
@@ -15,6 +16,8 @@ const App = () => {
       <h1 className="title">Countdown Timer</h1>
 
       <Timer targetDateTime={targetDateTime} />
+
+      <OriginalDateTimeDisplay targetDateTime={targetDateTime} />
 
       <div className="button">
         <button onClick={onCleanDate}>Reset</button>
