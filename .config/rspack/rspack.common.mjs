@@ -36,7 +36,7 @@ export default {
                   pragma: 'React.createElement',
                   pragmaFrag: 'React.Fragment',
                   throwIfNamespace: false,
-                  development: false,
+                  development: process.env.NODE_ENV === 'development',
                   importSource: 'react',
                   useBuiltins: false,
                 },
@@ -47,16 +47,8 @@ export default {
       },
       {
         test: /\.css$/,
-        use: [
-          'style-loader',
-          {
-            loader: 'css-loader',
-            options: {
-              modules: true,
-            },
-          },
-          'postcss-loader',
-        ],
+        exclude: /\.module\.css$/,
+        use: ['style-loader', 'css-loader', 'postcss-loader'],
       },
       {
         test: /\.(png|jp(e*)g|gif)$/,
