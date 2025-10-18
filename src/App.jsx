@@ -1,3 +1,4 @@
+import * as styles from './styles.css';
 import { EmptyState } from './components/EmptyState';
 import { useDeadlineDate } from './hooks/useDeadlineDate';
 import { Timer } from './components/Timer';
@@ -12,11 +13,11 @@ const App = () => {
   }
 
   return (
-    <div className="container">
-      <h1 className="title">Countdown Timer</h1>
+    <div className={styles?.content}>
+      <h1 className={styles.title}>Countdown Timer</h1>
       <Timer targetDateTime={targetDateTime} />
       <OriginalDateTimeDisplay targetDateTime={targetDateTime} />
-      <div className="button">
+      <div className={styles.button}>
         <button onClick={onCleanDate}>Reset</button>
       </div>
     </div>
