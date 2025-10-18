@@ -44,6 +44,7 @@ jobs:
         run: npm run build
         env:
           NODE_ENV: production
+          REACT_APP_GA_ID: ${{ secrets.REACT_APP_GA_ID }}
 
       - id: deployment
         name: Deploy to GitHub Pages 🚀

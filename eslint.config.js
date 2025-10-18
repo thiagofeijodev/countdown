@@ -49,6 +49,7 @@ const config = [
       globals: {
         ...globals.browser,
         ...globals.jest,
+        process: 'readonly',
       },
       parserOptions: {
         ecmaFeatures: {

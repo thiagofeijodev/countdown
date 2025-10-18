@@ -5,6 +5,7 @@ import FaviconsRspackPlugin from 'favicons-rspack-plugin';
 import CompressionPlugin from 'compression-webpack-plugin';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import common from './rspack.common.mjs';
+import rspack from '@rspack/core';
 
 export default () => {
   const config = {
@@ -16,6 +17,7 @@ export default () => {
       path: path.resolve(process.cwd(), 'dist'),
     },
     plugins: [
+      new rspack.EnvironmentPlugin(['REACT_APP_GA_ID']),
       new HtmlWebpackPlugin({
         favicon: 'public/logo.png',
         template: path.join(process.cwd(), 'public/index.html'),
