@@ -6,17 +6,9 @@ on:
 
 permissions:
   contents: write
-  pages: write
-  id-token: write
-
-concurrency:
-  group: 'pages'
-  cancel-in-progress: false
 
 jobs:
-  deploy:
-    environment:
-      name: github-pages
+  build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -35,10 +27,7 @@ jobs:
         run: npm run lint
 
       - name: Test
-        run: |
-          mkdir -p test-results
-          # run jest and write JSON results so we can upload them as an artifact
-          npm run test:ci
+        run: npm run test
 
       - name: Build 🔧
         run: npm run build
@@ -46,15 +35,10 @@ jobs:
           NODE_ENV: production
           REACT_APP_GA_ID: ${{ secrets.REACT_APP_GA_ID }}
 
-      - id: deployment
-        name: Deploy to GitHub Pages 🚀
-        uses: JamesIves/github-pages-deploy-action@v4
+      - name: Deploy to gh-pages branch
+        uses: peaceiris/actions-gh-pages@v4
         with:
-          folder: dist
-
-      - name: Upload test results
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: jest-results
-          path: test-results
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./docs
+          publish_branch: gh-pages
+          commit_message: 'chore: deploy to gh-pages 🚀'
