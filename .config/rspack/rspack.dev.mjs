@@ -29,6 +29,11 @@ const rspackConfig = {
     host: '0.0.0.0',
     open: true,
     hot: true,
+    client: {
+      overlay: {
+        runtimeErrors: false,
+      },
+    },
   },
 };
 

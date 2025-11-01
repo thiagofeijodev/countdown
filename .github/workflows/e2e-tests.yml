@@ -39,6 +39,7 @@ jobs:
       - name: Run E2E tests
         env:
           APP_URL: ${{ secrets.APP_URL }}
+          CI: 1
         run: npm run test:e2e:ci
 
       - name: Upload test results
@@ -48,4 +49,3 @@ jobs:
           name: playwright-report
           path: playwright-report/
           retention-days: 30
-

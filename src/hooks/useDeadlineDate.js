@@ -9,7 +9,7 @@ export const useDeadlineDate = () => {
   const [targetDate, setTargetDate] = useState(initialDate);
 
   // Parse the target date
-  const targetDateTime = new Date(targetDate);
+  const targetDateTime = targetDate ? new Date(targetDate) : null;
 
   const error = useMemo(() => {
     if (!targetDate) {
