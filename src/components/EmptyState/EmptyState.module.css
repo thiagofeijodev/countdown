@@ -22,13 +22,31 @@
   gap: 10px;
 }
 
-.formCountdowndate > input[type='submit'] {
+.buttonWrapper {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+.formCountdowndate > .buttonWrapper > input[type='submit'],
+.submitButton {
   cursor: pointer;
   background-color: #764ba2;
   border-radius: 4px;
   color: white;
   border: 0px solid;
   height: 30px;
+  width: 100%;
+}
+
+.cancelButton {
+  cursor: pointer;
+  background-color: #64748b;
+  border-radius: 4px;
+  color: white;
+  border: 0px solid;
+  height: 30px;
+  width: 100%;
 }
 
 .countdowndate {

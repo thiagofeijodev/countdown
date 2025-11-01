@@ -53,4 +53,40 @@ describe('EmptyState', () => {
 
     expect(screen.getByText('Welcome to Countdown')).toBeInTheDocument();
   });
+
+  it('should render edit mode when targetDateTime is provided', () => {
+    const mockTargetDateTime = new Date('2025-12-31T23:59:00.000Z');
+    render(<EmptyState updateDate={mockUpdateDate} targetDateTime={mockTargetDateTime} />);
+
+    expect(screen.getByText('Welcome to Countdown')).toBeInTheDocument();
+    expect(screen.getByText('Update your countdown date and time below.')).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'Update countdown' })).toBeInTheDocument();
+  });
+
+  it('should prefill input when targetDateTime is provided', () => {
+    const mockTargetDateTime = new Date('2025-12-31T23:59:00.000Z');
+    render(<EmptyState updateDate={mockUpdateDate} targetDateTime={mockTargetDateTime} />);
+
+    const dateInput = screen.getByLabelText('Countdown date (date and time):');
+    expect(dateInput).toHaveValue('2025-12-31T23:59');
+  });
+
+  it('should call onCancel when Cancel button is clicked', async () => {
+    const user = userEvent.setup();
+    const mockOnCancel = jest.fn();
+    const mockTargetDateTime = new Date('2025-12-31T23:59:00.000Z');
+
+    render(
+      <EmptyState
+        updateDate={mockUpdateDate}
+        targetDateTime={mockTargetDateTime}
+        onCancel={mockOnCancel}
+      />,
+    );
+
+    const cancelButton = screen.getByRole('button', { name: 'Cancel' });
+    await user.click(cancelButton);
+
+    expect(mockOnCancel).toHaveBeenCalledTimes(1);
+  });
 });
