@@ -15,6 +15,7 @@ const config = [
   {
     files: [
       'eslint.config.js',
+      'playwright.config.js',
       '.config/**/*.{js,ts,mjs}',
       'commitlint.config.js',
       'jest.config.mjs',
