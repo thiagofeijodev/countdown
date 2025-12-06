@@ -1,13 +1,19 @@
+import { useEffect } from 'react';
 import * as styles from './App.module.css';
 import { useDeadlineDate } from './hooks/useDeadlineDate';
 import { useEditMode } from './hooks/useEditMode';
 import { EmptyState } from './components/EmptyState/EmptyState';
 import { Timer } from './components/Timer/Timer';
 import { OriginalDateTimeDisplay } from './components/OriginalDateTimeDisplay/OriginalDateTimeDisplay';
+import { createGoogleTag } from './utils/createGoogleTag';
 
 const App = () => {
   const { error, targetDateTime, updateDate, onCleanDate } = useDeadlineDate();
   const { isEditing, handleEdit, handleCancelEdit, handleUpdateDate } = useEditMode(updateDate);
+
+  useEffect(() => {
+    createGoogleTag();
+  }, []);
 
   if (error || isEditing) {
     return (
