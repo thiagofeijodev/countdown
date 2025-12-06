@@ -26,7 +26,7 @@ export const Timer = ({ targetDateTime }) => {
             <div className={styles.separator}>:</div>
           </>
         )}
-        {!!countdown.hours && (
+        {(!!countdown.days || !!countdown.hours) && (
           <>
             <div className={styles.timeUnit}>
               <span className={styles.timeValue}>
@@ -37,10 +37,17 @@ export const Timer = ({ targetDateTime }) => {
             <div className={styles.separator}>:</div>
           </>
         )}
-        <div className={styles.timeUnit}>
-          <span className={styles.timeValue}>{countdown.minutes.toString().padStart(2, '0')}</span>
-          <span className={styles.timeLabel}>minutes</span>
-        </div>
+        {(!!countdown.days || !!countdown.hours || !!countdown.minutes) && (
+          <>
+            <div className={styles.timeUnit}>
+              <span className={styles.timeValue}>
+                {countdown.minutes.toString().padStart(2, '0')}
+              </span>
+              <span className={styles.timeLabel}>minutes</span>
+            </div>
+            <div className={styles.separator}>:</div>
+          </>
+        )}
         <div className={styles.separator}>:</div>
         <div className={styles.timeUnit}>
           <span className={styles.timeValue}>{countdown.seconds.toString().padStart(2, '0')}</span>
