@@ -15,6 +15,7 @@ const rspackConfig = {
     filename: 'static/main.js',
   },
   plugins: [
+    new rspack.EnvironmentPlugin(['REACT_APP_GA_ID']),
     new ReactRefreshPlugin(),
     new HtmlWebpackPlugin({
       template: path.join(process.cwd(), 'public/index.html'),
@@ -27,7 +28,7 @@ const rspackConfig = {
     static: path.join(process.cwd(), 'static'),
     historyApiFallback: true,
     host: '0.0.0.0',
-    open: true,
+    open: ['/countdown/'],
     hot: true,
     client: {
       overlay: {
