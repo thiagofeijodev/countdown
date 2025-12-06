@@ -7,6 +7,39 @@ on:
   workflow_dispatch: # Allows manual triggering
 
 jobs:
+  app-health-check:
+    name: Run E2E tests to verify app health
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install 🔧
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Playwright browsers
+        run: npm run test:prepare
+
+      - name: Run E2E tests
+        env:
+          APP_URL: 'https://feijo.dev/countdown/'
+          CI: 1
+        run: npm run test:e2e:ci
+
+      - name: Upload test results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report
+          path: playwright-report/
+          retention-days: 30
+
   health-check:
     name: Check if app is up and working
     runs-on: ubuntu-latest
@@ -14,7 +47,7 @@ jobs:
     steps:
       - name: Health Check
         run: |
-          APP_URL="https://thiagofeijodev.github.io/countdown/"
+          APP_URL="https://feijo.dev/countdown/"
 
           echo "🔍 Checking if app is accessible..."
 
@@ -55,6 +88,3 @@ jobs:
 
           echo ""
           echo "✅ Health check passed! App is up and running."
-
-        env:
-          APP_URL: ${{ secrets.APP_URL }}

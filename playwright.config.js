@@ -50,7 +50,7 @@ export default defineConfig({
       ],
 
   /* Run local dev server before starting the tests */
-  ...(process.env.CI
+  ...(process.env.APP_URL
     ? {}
     : {
         webServer: {
