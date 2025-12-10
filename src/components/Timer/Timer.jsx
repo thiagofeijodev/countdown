@@ -48,7 +48,6 @@ export const Timer = ({ targetDateTime }) => {
             <div className={styles.separator}>:</div>
           </>
         )}
-        <div className={styles.separator}>:</div>
         <div className={styles.timeUnit}>
           <span className={styles.timeValue}>{countdown.seconds.toString().padStart(2, '0')}</span>
           <span className={styles.timeLabel}>seconds</span>
