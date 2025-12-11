@@ -1,4 +1,4 @@
-import { useMemo, useState, useCallback } from 'react';
+import { useMemo, useState, useCallback, useEffect } from 'react';
 
 export const useDeadlineDate = () => {
   // Get the date parameter from the URL
@@ -7,6 +7,18 @@ export const useDeadlineDate = () => {
 
   // Internal state for the date (can be updated without URL change)
   const [targetDate, setTargetDate] = useState(initialDate);
+
+  // Listen for back/forward navigation and update state when URL changes
+  useEffect(() => {
+    const handlePopState = () => {
+      const newUrlParams = new URLSearchParams(window.location.search);
+      const newDate = newUrlParams.get('date');
+      setTargetDate(newDate || '');
+    };
+
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
+  }, []);
 
   // Parse the target date
   const targetDateTime = targetDate ? new Date(targetDate) : null;
@@ -24,7 +36,7 @@ export const useDeadlineDate = () => {
 
   const onCleanDate = useCallback(() => {
     setTargetDate('');
-    window.history.replaceState({}, '', '?date=');
+    window.history.pushState({}, '', '?date=');
   }, []);
 
   const updateDate = useCallback((newDate) => {
@@ -34,12 +46,12 @@ export const useDeadlineDate = () => {
       const dateObj = new Date(newDate);
       if (!isNaN(dateObj.getTime())) {
         const formattedDate = dateObj.toISOString();
-        window.history.replaceState({}, '', `?date=${formattedDate}`);
+        window.history.pushState({}, '', `?date=${formattedDate}`);
       } else {
-        window.history.replaceState({}, '', '?date=');
+        window.history.pushState({}, '', '?date=');
       }
     } else {
-      window.history.replaceState({}, '', '?date=');
+      window.history.pushState({}, '', '?date=');
     }
   }, []);
 
