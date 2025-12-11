@@ -23,6 +23,20 @@ export const useDeadlineDate = () => {
   // Parse the target date
   const targetDateTime = targetDate ? new Date(targetDate) : null;
 
+  // Update page title when targetDateTime changes
+  useEffect(() => {
+    if (targetDateTime) {
+      const formattedDate = targetDateTime.toLocaleDateString('en-US', {
+        year: 'numeric',
+        month: 'short',
+        day: 'numeric',
+      });
+      document.title = `Countdown to ${formattedDate}`;
+    } else {
+      document.title = 'Countdown Timer';
+    }
+  }, [targetDateTime]);
+
   const error = useMemo(() => {
     if (!targetDate) {
       return 'No date parameter found in URL. Add ?date=YYYY-MM-DD to the URL.';
