@@ -3,6 +3,7 @@ import { useDeadlineDate } from './useDeadlineDate';
 
 // Mock window.history
 const mockHistory = {
+  pushState: jest.fn(),
   replaceState: jest.fn(),
 };
 
@@ -94,7 +95,7 @@ describe('useDeadlineDate', () => {
         result.current.updateDate(newDate);
       });
 
-      expect(mockHistory.replaceState).toHaveBeenCalledWith(
+      expect(mockHistory.pushState).toHaveBeenCalledWith(
         {},
         '',
         `?date=${new Date(newDate).toISOString()}`,
@@ -108,7 +109,7 @@ describe('useDeadlineDate', () => {
         result.current.updateDate('');
       });
 
-      expect(mockHistory.replaceState).toHaveBeenCalledWith({}, '', '?date=');
+      expect(mockHistory.pushState).toHaveBeenCalledWith({}, '', '?date=');
     });
   });
 
@@ -141,7 +142,7 @@ describe('useDeadlineDate', () => {
         result.current.onCleanDate();
       });
 
-      expect(mockHistory.replaceState).toHaveBeenCalledWith({}, '', '?date=');
+      expect(mockHistory.pushState).toHaveBeenCalledWith({}, '', '?date=');
     });
   });
 
