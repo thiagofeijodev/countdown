@@ -13,6 +13,7 @@ const rspackConfig = {
     ...common.output,
     path: path.resolve(process.cwd(), 'static'),
     filename: 'static/main.js',
+    publicPath: '/',
   },
   plugins: [
     new rspack.EnvironmentPlugin(['REACT_APP_GA_ID']),

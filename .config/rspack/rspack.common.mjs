@@ -4,7 +4,7 @@ export default {
   entry: path.resolve(process.cwd(), 'src/index.jsx'),
   output: {
     filename: 'static/[name].[contenthash].js',
-    publicPath: '/countdown/',
+    publicPath: 'auto',
     clean: true,
   },
   resolve: {
