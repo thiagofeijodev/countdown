@@ -3,7 +3,7 @@ import { test, expect } from '@playwright/test';
 test.describe('Countdown Timer App', () => {
   test.beforeEach(async ({ page }) => {
     // Navigate to the app
-    const appUrl = process.env.APP_URL || 'http://localhost:3001/countdown';
+    const appUrl = process.env.APP_URL || 'http://localhost:3001/';
     await page.goto(appUrl);
   });
 
