@@ -47,8 +47,6 @@ jobs:
     steps:
       - name: Health Check
         run: |
-          APP_URL="https://feijo.dev/countdown/"
-
           echo "🔍 Checking if app is accessible..."
 
           # Check HTTP status and response
