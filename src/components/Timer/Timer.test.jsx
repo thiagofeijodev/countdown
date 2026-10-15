@@ -119,6 +119,24 @@ describe('Timer', () => {
 
     render(<Timer targetDateTime={targetDate} />);
 
-    expect(useCountdown).toHaveBeenCalledWith(targetDate);
+    expect(useCountdown).toHaveBeenCalledWith(targetDate, false);
+  });
+
+  it('should render without seconds in static mode', () => {
+    useCountdown.mockReturnValue({
+      days: 1,
+      hours: 2,
+      minutes: 3,
+      seconds: 4,
+    });
+
+    render(<Timer targetDateTime={new Date()} isStatic />);
+
+    expect(screen.getByText('days')).toBeInTheDocument();
+    expect(screen.getByText('hours')).toBeInTheDocument();
+    expect(screen.getByText('minutes')).toBeInTheDocument();
+    expect(screen.queryByText('seconds')).not.toBeInTheDocument();
+    expect(screen.getAllByText(':')).toHaveLength(2);
+    expect(useCountdown).toHaveBeenCalledWith(expect.any(Date), true);
   });
 });

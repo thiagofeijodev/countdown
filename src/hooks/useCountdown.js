@@ -5,7 +5,7 @@ export const MINUTE = 60 * SECOND;
 export const HOUR = 60 * MINUTE;
 export const DAY = 24 * HOUR;
 
-export const useCountdown = (targetDateTime) => {
+export const useCountdown = (targetDateTime, isStatic = false) => {
   const [now, setNow] = useState(new Date());
 
   const countdown = useMemo(() => {
@@ -33,13 +33,13 @@ export const useCountdown = (targetDateTime) => {
   }, [targetDateTime, now]);
 
   useEffect(() => {
-    if (!countdown) return;
+    if (isStatic || !targetDateTime || targetDateTime.getTime() <= Date.now()) return;
 
     const interval = setInterval(() => {
       setNow(new Date());
     }, 1000);
     return () => clearInterval(interval);
-  }, []);
+  }, [isStatic, targetDateTime]);
 
   return countdown;
 };
