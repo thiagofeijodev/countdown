@@ -79,6 +79,15 @@ test.describe('Countdown Timer App', () => {
     expect(timerText).toMatch(/\d+/); // Should contain at least one number
   });
 
+  test('should render a static PNG when png=1 is present in the URL', async ({ page }) => {
+    await page.goto(`${process.env.APP_URL || 'http://localhost:3001/'}?date=2030-12-31T23:59:59.000Z&png=1`);
+
+    const pngImage = page.getByRole('img', { name: 'Static countdown PNG' });
+    await expect(pngImage).toBeVisible();
+    await expect(pngImage).toHaveAttribute('src', /^data:image\/png;base64,/);
+    await expect(page.getByText('seconds', { exact: true })).toHaveCount(0);
+  });
+
   test('should allow editing the countdown', async ({ page }) => {
     // First set a countdown
     const futureDate = new Date();

@@ -7,16 +7,18 @@ import { Timer } from './components/Timer/Timer';
 import { OriginalDateTimeDisplay } from './components/OriginalDateTimeDisplay/OriginalDateTimeDisplay';
 import { Footer } from './components/Footer/Footer';
 import { createGoogleTag } from './utils/createGoogleTag';
+import { StaticPngView } from './components/StaticPngView/StaticPngView';
 
 const App = () => {
   const { error, targetDateTime, updateDate, onCleanDate } = useDeadlineDate();
   const { isEditing, handleEdit, handleCancelEdit, handleUpdateDate } = useEditMode(updateDate);
+  const isPngMode = new URLSearchParams(window.location.search).get('png') === '1';
 
   useEffect(() => {
     createGoogleTag();
   }, []);
 
-  if (error || isEditing) {
+  if (error || (!isPngMode && isEditing)) {
     return (
       <div className={styles.content}>
         <div className={styles.mainWrapper}>
@@ -29,6 +31,10 @@ const App = () => {
         <Footer />
       </div>
     );
+  }
+
+  if (isPngMode) {
+    return <StaticPngView targetDateTime={targetDateTime} />;
   }
 
   return (

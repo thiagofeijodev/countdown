@@ -2,6 +2,14 @@
 
 A lightweight, privacy-minded countdown app made for clarity and speed. Enter a target date and get a clear countdown in days, hours, minutes, and seconds. The interface is intentionally minimal: no ads, no analytics, and no unnecessary features — just the information you need. Ideal for event timers, personal goals, deadlines, and quick embeds on static pages.
 
+## Static PNG view
+
+Add `png=1` to a URL that includes a `date` parameter to display the countdown as a PNG image. This view is static, omits seconds, and is generated when the page loads.
+
+```text
+/?date=2030-12-31T23%3A59%3A59.000Z&png=1
+```
+
 ## 🔧 Development Setup
 
 To run this project locally, follow these steps:

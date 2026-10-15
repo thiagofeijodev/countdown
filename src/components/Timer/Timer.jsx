@@ -2,8 +2,8 @@ import * as styles from './Timer.module.css';
 import { useCountdown } from '../../hooks/useCountdown';
 import * as appStyles from '../../App.module.css';
 
-export const Timer = ({ targetDateTime }) => {
-  const countdown = useCountdown(targetDateTime);
+export const Timer = ({ targetDateTime, isStatic = false }) => {
+  const countdown = useCountdown(targetDateTime, isStatic);
 
   if (!countdown) {
     return (
@@ -45,13 +45,15 @@ export const Timer = ({ targetDateTime }) => {
               </span>
               <span className={styles.timeLabel}>minutes</span>
             </div>
-            <div className={styles.separator}>:</div>
+            {!isStatic && <div className={styles.separator}>:</div>}
           </>
         )}
-        <div className={styles.timeUnit}>
-          <span className={styles.timeValue}>{countdown.seconds.toString().padStart(2, '0')}</span>
-          <span className={styles.timeLabel}>seconds</span>
-        </div>
+        {!isStatic && (
+          <div className={styles.timeUnit}>
+            <span className={styles.timeValue}>{countdown.seconds.toString().padStart(2, '0')}</span>
+            <span className={styles.timeLabel}>seconds</span>
+          </div>
+        )}
       </div>
     </div>
   );
