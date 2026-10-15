@@ -79,13 +79,36 @@ test.describe('Countdown Timer App', () => {
     expect(timerText).toMatch(/\d+/); // Should contain at least one number
   });
 
-  test('should render a static PNG when png=1 is present in the URL', async ({ page }) => {
-    await page.goto(`${process.env.APP_URL || 'http://localhost:3001/'}?date=2030-12-31T23:59:59.000Z&png=1`);
+  test('should render the static PDF view when pdf=1 is present in the URL', async ({ page }) => {
+    await page.goto(`${process.env.APP_URL || 'http://localhost:3001/'}?date=2030-12-31T23:59:59.000Z&pdf=1`);
 
-    const pngImage = page.getByRole('img', { name: 'Static countdown PNG' });
-    await expect(pngImage).toBeVisible();
-    await expect(pngImage).toHaveAttribute('src', /^data:image\/png;base64,/);
+    await expect(page.locator('[class*="countdownBox"]')).toBeVisible();
+    await expect(page.getByText('days', { exact: true })).toBeVisible();
+    await expect(page.getByText('hours', { exact: true })).toBeVisible();
+    await expect(page.getByText('minutes', { exact: true })).toBeVisible();
     await expect(page.getByText('seconds', { exact: true })).toHaveCount(0);
+    await expect(page.getByRole('button')).toHaveCount(0);
+    await expect(page.locator('[class*="footer"]')).toHaveCount(0);
+  });
+
+  test('should print only the centered countdown with its background color', async ({ page }) => {
+    await page.goto(`${process.env.APP_URL || 'http://localhost:3001/'}?date=2030-12-31T23:59:59.000Z`);
+    await page.emulateMedia({ media: 'print' });
+
+    await expect(page.getByRole('heading', { name: 'Countdown Timer' })).toBeHidden();
+    await expect(page.getByRole('button', { name: 'Edit' })).toBeHidden();
+    await expect(page.getByRole('button', { name: 'Reset' })).toBeHidden();
+    await expect(page.locator('[class*="footer"]')).toBeHidden();
+    await expect(page.locator('[class*="selectedDate"]')).toBeHidden();
+    await expect(page.getByText('days', { exact: true })).toBeVisible();
+    await expect(page.getByText('hours', { exact: true })).toBeVisible();
+    await expect(page.getByText('minutes', { exact: true })).toBeVisible();
+    await expect(page.getByText('seconds', { exact: true })).toBeHidden();
+    expect(
+      await page
+        .locator('body')
+        .evaluate((body) => body.ownerDocument.defaultView.getComputedStyle(body).backgroundColor),
+    ).toBe('rgb(15, 23, 42)');
   });
 
   test('should allow editing the countdown', async ({ page }) => {

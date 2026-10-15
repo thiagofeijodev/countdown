@@ -11,11 +11,6 @@ jest.mock('./hooks/useEditMode', () => ({
   useEditMode: jest.fn(),
 }));
 
-jest.mock('./components/StaticPngView/StaticPngView', () => ({
-  StaticPngView: () =>
-    jest.requireActual('react').createElement('div', { 'data-testid': 'static-png-view' }),
-}));
-
 import { useDeadlineDate } from './hooks/useDeadlineDate';
 import { useEditMode } from './hooks/useEditMode';
 
@@ -67,19 +62,23 @@ describe('App', () => {
     expect(screen.getByRole('button', { name: 'Reset' })).toBeInTheDocument();
   });
 
-  it('should render the PNG view when png=1 is present in the URL', () => {
-    window.history.pushState({}, '', '/?date=2025-12-31&png=1');
+  it('should render a static PDF view when pdf=1 is present in the URL', () => {
+    window.history.pushState({}, '', '/?date=2030-12-31&pdf=1');
     useDeadlineDate.mockReturnValue({
       error: undefined,
-      targetDateTime: new Date('2025-12-31T23:59:59.000Z'),
+      targetDateTime: new Date('2030-12-31T23:59:59.000Z'),
       onCleanDate: mockOnCleanDate,
       updateDate: mockUpdateDate,
     });
 
     render(<App />);
 
-    expect(screen.getByTestId('static-png-view')).toBeInTheDocument();
+    expect(screen.getByText('days')).toBeInTheDocument();
+    expect(screen.getByText('hours')).toBeInTheDocument();
+    expect(screen.getByText('minutes')).toBeInTheDocument();
+    expect(screen.queryByText('seconds')).not.toBeInTheDocument();
     expect(screen.queryByRole('button', { name: 'Edit' })).not.toBeInTheDocument();
+    expect(screen.queryByText('Countdown Timer')).not.toBeInTheDocument();
   });
 
   it('should call onCleanDate when Reset button is clicked', async () => {

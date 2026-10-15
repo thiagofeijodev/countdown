@@ -4,3 +4,9 @@
   text-align: center;
   color: #94a3b8;
 }
+
+@media print {
+  .selectedDate {
+    display: none !important;
+  }
+}

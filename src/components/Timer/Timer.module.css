@@ -48,3 +48,10 @@
   color: #64748b;
   font-weight: bold;
 }
+
+@media print {
+  .secondsUnit,
+  .secondsSeparator {
+    display: none !important;
+  }
+}

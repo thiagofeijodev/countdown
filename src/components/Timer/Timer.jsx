@@ -17,7 +17,7 @@ export const Timer = ({ targetDateTime, isStatic = false }) => {
   return (
     <div className={appStyles.countdownBox}>
       <div className={styles.timeDisplay}>
-        {!!countdown.days && (
+        {(!!countdown.days || isStatic) && (
           <>
             <div className={styles.timeUnit}>
               <span className={styles.timeValue}>{countdown.days}</span>
@@ -26,7 +26,7 @@ export const Timer = ({ targetDateTime, isStatic = false }) => {
             <div className={styles.separator}>:</div>
           </>
         )}
-        {(!!countdown.days || !!countdown.hours) && (
+        {(!!countdown.days || !!countdown.hours || isStatic) && (
           <>
             <div className={styles.timeUnit}>
               <span className={styles.timeValue}>
@@ -37,7 +37,7 @@ export const Timer = ({ targetDateTime, isStatic = false }) => {
             <div className={styles.separator}>:</div>
           </>
         )}
-        {(!!countdown.days || !!countdown.hours || !!countdown.minutes) && (
+        {(!!countdown.days || !!countdown.hours || !!countdown.minutes || isStatic) && (
           <>
             <div className={styles.timeUnit}>
               <span className={styles.timeValue}>
@@ -45,11 +45,13 @@ export const Timer = ({ targetDateTime, isStatic = false }) => {
               </span>
               <span className={styles.timeLabel}>minutes</span>
             </div>
-            {!isStatic && <div className={styles.separator}>:</div>}
+            {!isStatic && (
+              <div className={`${styles.separator} ${styles.secondsSeparator}`}>:</div>
+            )}
           </>
         )}
         {!isStatic && (
-          <div className={styles.timeUnit}>
+          <div className={`${styles.timeUnit} ${styles.secondsUnit}`}>
             <span className={styles.timeValue}>{countdown.seconds.toString().padStart(2, '0')}</span>
             <span className={styles.timeLabel}>seconds</span>
           </div>
